@@ -1,57 +1,17 @@
 package com.ibm.stg.pc.sym.si.util;
 
-
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Scanner;
 
+import com.ibm.stg.pc.sym.si.widget.Widget;
 import com.mysql.jdbc.Connection;
 
-public class sishell {
-
-	static Dbconn db;
-
-	
-	public static void main(String[] args) {
-		Scanner sca = new Scanner(System.in);
-		Connection conn = null;
+public class VemkdPerfWidget implements Widget {
+	Connection conn = null;
+	@Override
+	public void runWidget() {
 		// TODO Auto-generated method stub
-		System.out.println("Hello SI!");
-		try {
-			db = new Dbconn("/proxool.xml");
-			conn = db.getConn();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		while(true){
-			System.out.println("> Please enter your command / ? for help");
-			String name = sca.nextLine();
-			
-			switch(name){
-				case "?":
-					//ShowHelp();
-					break;
-				case "cdb":
-					break;
-				case "l":
-					VemkdPerfWidget vpwidget = new VemkdPerfWidget();
-					vpwidget.getDbConnection(conn);
-					vpwidget.runWidget();
-					break;
-				case "by":
-					System.out.println("bye - thank you for use");
-					return;
-					
-				default:
-					System.out.println("Unknown command, please try again. ? for help");
-			}
-		}
-	}
-	
-	public static void showMessage(Connection conn){
-		
 		String sql1 = "SELECT * FROM sym.vemkd where func = 'chanPoll'";
 		Statement stmt1 = null;
 		ResultSet rst1 = null;
@@ -88,6 +48,26 @@ public class sishell {
 			
 		//	allcards.showAllcards();
 		//	allcardshash.showAllcards();
+
 	}
-	
+
+	@Override
+	public void verifyWidget() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public boolean loadWidget() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void getDbConnection(Connection conn1) {
+		// TODO Auto-generated method stub
+		this.conn = conn1;
+		
+	}
+
 }
