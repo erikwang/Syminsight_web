@@ -15,11 +15,12 @@ public class sishell {
 	
 	public static void main(String[] args) {
 		Scanner sca = new Scanner(System.in);
-
+		Connection conn = null;
 		// TODO Auto-generated method stub
 		System.out.println("Hello SI!");
 		try {
 			db = new Dbconn("/proxool.xml");
+			conn = db.getConn();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -36,7 +37,7 @@ public class sishell {
 					
 					break;
 				case "l":
-					showMessage();
+					showMessage(conn);
 					break;
 				case "by":
 					System.out.println("bye - thank you for use");
@@ -48,15 +49,15 @@ public class sishell {
 		}
 	}
 	
-	public static void showMessage(){
-		Connection conn = null;
+	public static void showMessage(Connection conn){
+		
 		String sql1 = "SELECT * FROM sym.vemkd where func = 'chanPoll'";
 		Statement stmt1 = null;
 		ResultSet rst1 = null;
 		String para1;
 		String para2;
 		String para3;
-		conn = db.getConn();
+
 		try {
 			stmt1 = conn.createStatement();
 		} catch (Exception e) {
