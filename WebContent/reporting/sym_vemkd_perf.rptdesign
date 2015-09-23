@@ -2344,6 +2344,11 @@ order by logdate]]></xml-property>
     <page-setup>
         <simple-master-page name="Simple MasterPage" id="2">
             <property name="orientation">landscape</property>
+            <page-header>
+                <label id="176">
+                    <text-property name="text">Welcome to VEMKD perf log visualization tool</text-property>
+                </label>
+            </page-header>
             <page-footer>
                 <text id="3">
                     <property name="contentType">html</property>

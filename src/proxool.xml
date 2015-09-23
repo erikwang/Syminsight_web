@@ -11,9 +11,9 @@
 	</driver-properties> 
 
 	<house-keeping-sleep-time>90000</house-keeping-sleep-time>
-	<maximum-new-connections>30</maximum-new-connections>
+	<proxool.simultaneous-build-throttle>30</proxool.simultaneous-build-throttle>
 	<prototype-count>5</prototype-count>
-	<maximum-connection-count>100</maximum-connection-count>
-	<minimum-connection-count>10</minimum-connection-count>
+	<maximum-connection-count>50</maximum-connection-count>
+	<minimum-connection-count>5</minimum-connection-count>
 </proxool>
 </something-else-entirely>
