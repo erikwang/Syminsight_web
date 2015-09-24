@@ -11,7 +11,7 @@
   </context-param>
   <context-param>
     <param-name>BIRT_VIEWER_WORKING_FOLDER</param-name>
-    <param-value></param-value>
+    <param-value>${BIRT_HOME}/reports/vemkdgen</param-value>
   </context-param>
   <context-param>
     <param-name>BIRT_VIEWER_DOCUMENT_FOLDER</param-name>

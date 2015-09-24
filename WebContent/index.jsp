@@ -16,7 +16,7 @@
 	</HEAD>
 	<BODY>
 		<!-- Page banner -->
-		
+		Welcome to Symphony VEMKD performance reporting tool
 		<p><a href="<%= request.getContextPath( ) + "/frameset?__report=sym_vemkd_perf.rptdesign" %>">View General Example</a>
 		<p><a href="<%= request.getContextPath( ) + "/frameset?__report=sym_vemkd_perf.rptdesign" %>">View IO report</a>
 		<p><a href="<%= request.getContextPath( ) + "/frameset?__report=sym_vemkd_perf.rptdesign" %>">View ChanPoll report</a>
