@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="syminsight">
+    <wb-module deploy-name="syminsight_web">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="context-root" value="syminsight"/>
-        <property name="java-output-path" value="/syminsight/bin"/>
+        <property name="java-output-path" value="/syminsight_web/bin"/>
+        <property name="context-root" value="syminsight_web"/>
     </wb-module>
 </project-modules>
