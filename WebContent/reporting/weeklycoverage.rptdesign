@@ -28,8 +28,11 @@
             <text-property name="promptText">Start time</text-property>
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
-            <property name="dataType">date</property>
+            <property name="dataType">string</property>
             <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="javascript">new Date()</value>
+            </simple-property-list>
             <list-property name="selectionList"/>
             <property name="paramType">simple</property>
             <property name="concealValue">false</property>
@@ -41,15 +44,60 @@
         <scalar-parameter name="offset" id="172">
             <property name="valueType">static</property>
             <property name="isRequired">true</property>
-            <property name="dataType">integer</property>
+            <property name="dataType">string</property>
             <property name="distinct">true</property>
             <simple-property-list name="defaultValue">
-                <value type="constant">1</value>
+                <value type="constant">3</value>
             </simple-property-list>
-            <list-property name="selectionList"/>
+            <list-property name="selectionList">
+                <structure>
+                    <property name="value">1</property>
+                    <property name="label">1</property>
+                </structure>
+                <structure>
+                    <property name="value">2</property>
+                    <property name="label">2</property>
+                </structure>
+                <structure>
+                    <property name="value">3</property>
+                    <property name="label">3</property>
+                </structure>
+                <structure>
+                    <property name="value">4</property>
+                    <property name="label">4</property>
+                </structure>
+                <structure>
+                    <property name="value">5</property>
+                    <property name="label">5</property>
+                </structure>
+                <structure>
+                    <property name="value">15</property>
+                    <property name="label">15</property>
+                </structure>
+            </list-property>
             <property name="paramType">simple</property>
-            <property name="concealValue">false</property>
-            <property name="controlType">text-box</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">true</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="engineer" id="191">
+            <property name="valueType">dynamic</property>
+            <property name="isRequired">true</property>
+            <property name="dataSetName">engineers</property>
+            <expression name="valueExpr" type="javascript">dataSetRow["firstname"]</expression>
+            <expression name="labelExpr" type="javascript">dataSetRow["firstname"] + " " + dataSetRow["lastname"]</expression>
+            <expression name="sortByColumn">dataSetRow["firstname"]</expression>
+            <property name="sortDirection">asc</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">multi-value</property>
+            <property name="controlType">list-box</property>
+            <property name="mustMatch">true</property>
+            <property name="fixedOrder">false</property>
             <structure name="format">
                 <property name="category">Unformatted</property>
             </structure>
@@ -74,7 +122,7 @@
                 </ex-property>
             </list-property>
             <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
-            <property name="odaURL">jdbc:mysql://ekmcmc.eng.platformlab.ibm.com:3306/sym</property>
+            <property name="odaURL">jdbc:mysql://9.21.59.15:3306/sym</property>
             <property name="odaUser">root</property>
             <encrypted-property name="odaPassword" encryptionID="base64">dG9vcg==</encrypted-property>
             <property name="odaJndiName">toor</property>
@@ -621,6 +669,12 @@ order by logdate]]></xml-property>
                     <text-property name="heading">teamname</text-property>
                 </structure>
                 <structure>
+                    <property name="columnName">dayname</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">dayname</text-property>
+                    <text-property name="heading">dayname</text-property>
+                </structure>
+                <structure>
                     <property name="columnName">fullcoveragestarthour</property>
                     <property name="analysis">dimension</property>
                     <text-property name="displayName">fullcoveragestarthour</text-property>
@@ -639,7 +693,48 @@ order by logdate]]></xml-property>
                     <text-property name="heading">fullcoveragename</text-property>
                 </structure>
             </list-property>
-            <list-property name="parameters"/>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">param_1</property>
+                    <property name="paramName">Starttime</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_2</property>
+                    <property name="paramName">offset</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_3</property>
+                    <property name="paramName">Starttime</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">date</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">3</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">param_4</property>
+                    <property name="paramName">offset</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">4</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
             <structure name="cachedMetaData">
                 <list-property name="resultSet">
                     <structure>
@@ -684,21 +779,27 @@ order by logdate]]></xml-property>
                     </structure>
                     <structure>
                         <property name="position">9</property>
-                        <property name="name">fullcoveragestarthour</property>
+                        <property name="name">dayname</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">10</property>
-                        <property name="name">fullcoverageendhour</property>
+                        <property name="name">fullcoveragestarthour</property>
                         <property name="dataType">string</property>
                     </structure>
                     <structure>
                         <property name="position">11</property>
+                        <property name="name">fullcoverageendhour</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
                         <property name="name">fullcoveragename</property>
                         <property name="dataType">string</property>
                     </structure>
                 </list-property>
             </structure>
+            <method name="beforeOpen"><![CDATA[this.queryText = this.queryText.replace("xxx", params["engineer"].value.join("','" ));]]></method>
             <property name="dataSource">Data Source</property>
             <list-property name="resultSet">
                 <structure>
@@ -706,73 +807,154 @@ order by logdate]]></xml-property>
                     <property name="name">sn</property>
                     <property name="nativeName">sn</property>
                     <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
                     <property name="position">2</property>
                     <property name="name">engineername</property>
                     <property name="nativeName">engineername</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">3</property>
                     <property name="name">coveragedate</property>
                     <property name="nativeName">coveragedate</property>
                     <property name="dataType">date</property>
+                    <property name="nativeDataType">91</property>
                 </structure>
                 <structure>
                     <property name="position">4</property>
                     <property name="name">coveragename</property>
                     <property name="nativeName">coveragename</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">5</property>
                     <property name="name">coveragestarthour</property>
                     <property name="nativeName">coveragestarthour</property>
                     <property name="dataType">time</property>
+                    <property name="nativeDataType">92</property>
                 </structure>
                 <structure>
                     <property name="position">6</property>
                     <property name="name">coverageendhour</property>
                     <property name="nativeName">coverageendhour</property>
                     <property name="dataType">time</property>
+                    <property name="nativeDataType">92</property>
                 </structure>
                 <structure>
                     <property name="position">7</property>
                     <property name="name">team</property>
                     <property name="nativeName">team</property>
                     <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
                 </structure>
                 <structure>
                     <property name="position">8</property>
                     <property name="name">teamname</property>
                     <property name="nativeName">teamname</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">9</property>
-                    <property name="name">fullcoveragestarthour</property>
-                    <property name="nativeName">fullcoveragestarthour</property>
+                    <property name="name">dayname</property>
+                    <property name="nativeName">dayname</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">10</property>
-                    <property name="name">fullcoverageendhour</property>
-                    <property name="nativeName">fullcoverageendhour</property>
+                    <property name="name">fullcoveragestarthour</property>
+                    <property name="nativeName">fullcoveragestarthour</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
                 <structure>
                     <property name="position">11</property>
+                    <property name="name">fullcoverageendhour</property>
+                    <property name="nativeName">fullcoverageendhour</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
                     <property name="name">fullcoveragename</property>
                     <property name="nativeName">fullcoveragename</property>
                     <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[select * from v_coverageschedule 
-]]></xml-property>
+where
+coveragedate >= adddate(?,0-?) and coveragedate <= adddate(?,?) and engineername in ('xxx')]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>4</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
   <design:ResultSets derivedMetaData="true">
     <design:resultSetDefinitions>
       <design:resultSetColumns>
@@ -992,6 +1174,355 @@ order by logdate]]></xml-property>
   </design:ResultSets>
 </model:DesignValues>]]></xml-property>
         </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="engineers" id="190">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">sn</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">sn</text-property>
+                    <text-property name="heading">sn</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">firstname</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">firstname</text-property>
+                    <text-property name="heading">firstname</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">lastname</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">lastname</text-property>
+                    <text-property name="heading">lastname</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">region</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">region</text-property>
+                    <text-property name="heading">region</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">team</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">team</text-property>
+                    <text-property name="heading">team</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">comment</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">comment</text-property>
+                    <text-property name="heading">comment</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cnaw</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">cnaw</text-property>
+                    <text-property name="heading">cnaw</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">chotline</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">chotline</text-property>
+                    <text-property name="heading">chotline</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cmorningshift</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">cmorningshift</text-property>
+                    <text-property name="heading">cmorningshift</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">cpimco</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">cpimco</text-property>
+                    <text-property name="heading">cpimco</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">estatus</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">estatus</text-property>
+                    <text-property name="heading">estatus</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters"/>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">sn</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">firstname</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">lastname</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">region</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">team</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">comment</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">cnaw</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">chotline</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">cmorningshift</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">cpimco</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">estatus</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">sn</property>
+                    <property name="nativeName">sn</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">firstname</property>
+                    <property name="nativeName">firstname</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">lastname</property>
+                    <property name="nativeName">lastname</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">region</property>
+                    <property name="nativeName">region</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">team</property>
+                    <property name="nativeName">team</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">comment</property>
+                    <property name="nativeName">comment</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">cnaw</property>
+                    <property name="nativeName">cnaw</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-7</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">chotline</property>
+                    <property name="nativeName">chotline</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-7</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">cmorningshift</property>
+                    <property name="nativeName">cmorningshift</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-7</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">cpimco</property>
+                    <property name="nativeName">cpimco</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-7</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">estatus</property>
+                    <property name="nativeName">estatus</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-7</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select *
+from td_engineers where estatus=1 and team=1]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>sn</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>sn</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>sn</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>firstname</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>45</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>firstname</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>firstname</design:label>
+            <design:formattingHints>
+              <design:displaySize>45</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>lastname</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>45</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>lastname</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>lastname</design:label>
+            <design:formattingHints>
+              <design:displaySize>45</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>region</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>45</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>region</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>region</design:label>
+            <design:formattingHints>
+              <design:displaySize>45</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>team</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>45</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>team</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>team</design:label>
+            <design:formattingHints>
+              <design:displaySize>45</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>comment</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>45</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>comment</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>comment</design:label>
+            <design:formattingHints>
+              <design:displaySize>45</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
     </data-sets>
     <styles>
         <style name="report" id="4">
@@ -1032,7 +1563,7 @@ order by logdate]]></xml-property>
             <property name="type">custom</property>
             <property name="orientation">landscape</property>
             <property name="height">210mm</property>
-            <property name="width">4096px</property>
+            <property name="width">100%</property>
             <page-footer>
                 <text id="3">
                     <property name="contentType">html</property>
@@ -1079,7 +1610,7 @@ order by logdate]]></xml-property>
       <Visible>true</Visible>
       <Label>
         <Caption>
-          <Value>Chart Title</Value>
+          <Value>Coverage by day axis</Value>
           <Font>
             <Size>16.0</Size>
             <Bold>true</Bold>
@@ -1233,7 +1764,7 @@ order by logdate]]></xml-property>
         <Visible>true</Visible>
       </Separator>
       <Position>Below</Position>
-      <ItemType>Series</ItemType>
+      <ItemType>Categories</ItemType>
       <Title>
         <Caption>
           <Value></Value>
@@ -1297,6 +1828,9 @@ order by logdate]]></xml-property>
       <Visible>false</Visible>
     </Outline>
     <Visible>true</Visible>
+    <Cursor>
+      <Type>Auto</Type>
+    </Cursor>
   </Block>
   <Dimension>Two_Dimensional</Dimension>
   <Units>Points</Units>
@@ -1693,6 +2227,7 @@ order by logdate]]></xml-property>
               </Value>
             </Action>
           </Triggers>
+          <Translucent>false</Translucent>
           <StartMarker>
             <Type>Nabla</Type>
             <Size>4</Size>
@@ -1713,7 +2248,7 @@ order by logdate]]></xml-property>
           <EndMarkerPosition>Above</EndMarkerPosition>
           <ConnectionLine>
             <Style>Solid</Style>
-            <Thickness>10</Thickness>
+            <Thickness>15</Thickness>
             <Color>
               <Transparency>255</Transparency>
               <Red>0</Red>
@@ -1764,7 +2299,7 @@ order by logdate]]></xml-property>
             </Insets>
             <Visible>true</Visible>
           </DecorationLabel>
-          <PaletteLineColor>false</PaletteLineColor>
+          <PaletteLineColor>true</PaletteLineColor>
         </Series>
         <Grouping>
           <GroupType>Text</GroupType>
@@ -1817,16 +2352,15 @@ order by logdate]]></xml-property>
         </Insets>
         <Visible>true</Visible>
       </Label>
-      <FormatSpecifier xsi:type="attribute:DateFormatSpecifier">
-        <Type>Short</Type>
-        <Detail>Date_Time</Detail>
+      <FormatSpecifier xsi:type="attribute:JavaDateFormatSpecifier">
+        <Pattern>EEE, MMM d, yyyy</Pattern>
       </FormatSpecifier>
       <LabelPosition>Left</LabelPosition>
       <Staggered>false</Staggered>
       <Interval>1</Interval>
       <MajorGrid>
         <LineAttributes>
-          <Style>Solid</Style>
+          <Style>Dashed</Style>
           <Thickness>1</Thickness>
           <Color>
             <Transparency>255</Transparency>
@@ -1859,7 +2393,7 @@ order by logdate]]></xml-property>
             <Green>225</Green>
             <Blue>225</Blue>
           </Color>
-          <Visible>true</Visible>
+          <Visible>false</Visible>
         </LineAttributes>
         <TickStyle>Across</TickStyle>
         <TickAttributes>
@@ -1994,6 +2528,12 @@ order by logdate]]></xml-property>
         <Entries xsi:type="attribute:ColorDefinition">
           <Transparency>255</Transparency>
           <Red>0</Red>
+          <Green>128</Green>
+          <Blue>192</Blue>
+        </Entries>
+        <Entries xsi:type="attribute:ColorDefinition">
+          <Transparency>255</Transparency>
+          <Red>128</Red>
           <Green>128</Green>
           <Blue>192</Blue>
         </Entries>
@@ -2183,6 +2723,7 @@ order by logdate]]></xml-property>
       <Visible>true</Visible>
     </Label>
     <LabelPosition>Below</LabelPosition>
+    <Staggered>false</Staggered>
     <MajorGrid>
       <LineAttributes>
         <Style>Solid</Style>
@@ -2193,7 +2734,7 @@ order by logdate]]></xml-property>
           <Green>196</Green>
           <Blue>196</Blue>
         </Color>
-        <Visible>false</Visible>
+        <Visible>true</Visible>
       </LineAttributes>
       <TickStyle>Across</TickStyle>
       <TickAttributes>
@@ -2235,6 +2776,7 @@ order by logdate]]></xml-property>
     </MinorGrid>
     <Scale>
       <MinorGridsPerUnit>5</MinorGridsPerUnit>
+      <TickBetweenCategories>true</TickBetweenCategories>
     </Scale>
     <Origin>
       <Type>Min</Type>
@@ -2256,12 +2798,13 @@ order by logdate]]></xml-property>
       <Type>None</Type>
     </Angles>
   </Rotation>
+  <ReverseCategory>false</ReverseCategory>
 </model:ChartWithAxes>
 ]]></xml-property>
             <property name="outputFormat">SVG</property>
             <property name="inheritColumns">false</property>
             <property name="height">6.416666666666667in</property>
-            <property name="width">4096px</property>
+            <property name="width">1024px</property>
             <property name="dataSet">coverage</property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -2944,7 +3487,7 @@ order by logdate]]></xml-property>
             <Visible>false</Visible>
           </Label>
           <DataDefinition>
-            <Definition>row[&quot;coveragestarthour&quot;]</Definition>
+            <Definition>row[&quot;fullcoveragestarthour&quot;]</Definition>
             <Grouping>
               <Enabled>true</Enabled>
               <GroupType>Text</GroupType>
@@ -2952,7 +3495,7 @@ order by logdate]]></xml-property>
             </Grouping>
           </DataDefinition>
           <DataDefinition>
-            <Definition>row[&quot;coverageendhour&quot;]</Definition>
+            <Definition>row[&quot;fullcoverageendhour&quot;]</Definition>
             <Grouping>
               <Enabled>true</Enabled>
               <GroupType>Text</GroupType>
@@ -3161,7 +3704,10 @@ order by logdate]]></xml-property>
         </TickAttributes>
       </MinorGrid>
       <Scale>
+        <Step>1.0</Step>
+        <Unit>Weeks</Unit>
         <MinorGridsPerUnit>5</MinorGridsPerUnit>
+        <AutoExpand>true</AutoExpand>
       </Scale>
       <Origin>
         <Type>Min</Type>
@@ -3551,7 +4097,7 @@ order by logdate]]></xml-property>
             <property name="outputFormat">SVG</property>
             <property name="inheritColumns">true</property>
             <property name="height">4.145833333333333in</property>
-            <property name="width">10.375in</property>
+            <property name="width">10.65625in</property>
             <property name="dataSet">coverage</property>
             <list-property name="boundDataColumns">
                 <structure>
@@ -3597,12 +4143,14 @@ order by logdate]]></xml-property>
                 <structure>
                     <property name="name">fullcoveragestarthour</property>
                     <expression name="expression" type="javascript">dataSetRow["fullcoveragestarthour"]</expression>
-                    <property name="dataType">string</property>
+                    <property name="dataType">date-time</property>
+                    <property name="allowExport">true</property>
                 </structure>
                 <structure>
                     <property name="name">fullcoverageendhour</property>
                     <expression name="expression" type="javascript">dataSetRow["fullcoverageendhour"]</expression>
-                    <property name="dataType">string</property>
+                    <property name="dataType">date-time</property>
+                    <property name="allowExport">true</property>
                 </structure>
             </list-property>
         </extended-item>
