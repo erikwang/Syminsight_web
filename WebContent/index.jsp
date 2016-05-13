@@ -17,9 +17,9 @@
 	<BODY>
 		<!-- Page banner -->
 		Welcome to Symphony VEMKD performance reporting tool
-		<p><a href="<%= request.getContextPath( ) + "/frameset?__report=sym_vemkd_perf.rptdesign" %>">View General Example</a>
-		<p><a href="<%= request.getContextPath( ) + "/frameset?__report=sym_vemkd_perf.rptdesign" %>">View IO report</a>
-		<p><a href="<%= request.getContextPath( ) + "/frameset?__report=sym_vemkd_perf.rptdesign" %>">View ChanPoll report</a>
+		<p><a href="<%= request.getContextPath( ) + "/frameset?__report=sym_vemkd_perf.rptdesign" %>">View VEMKD performance report</a>
+		<p><a href="<%= request.getContextPath( ) + "/frameset?__report=weeklycoverage.rptdesign" %>">View Symphony NA team coverage report</a>
+		<p><a href="<%= request.getContextPath( ) + "/frameset?__report=pmrreview.rptdesign" %>">View PMR review analysis report</a>
 		
 	</BODY>
 </HTML>
